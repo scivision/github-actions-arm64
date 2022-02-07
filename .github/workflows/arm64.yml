@@ -1,6 +1,13 @@
 name: arm64
 
-on: [push, pull_request]
+on:
+  push:
+    paths:
+      - "**/CMakeLists.txt"
+      - "**.cmake"
+      - "**.c"
+      - ".github/workflows/arm64.yml"
+  pull_request:
 
 jobs:
   aarch64:

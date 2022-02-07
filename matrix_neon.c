@@ -226,7 +226,7 @@ bool matrix_comp(float32_t *A, float32_t *B, uint32_t rows, uint32_t cols) {
         return true;
 }
 
-int main() {
+int main(void) {
         uint32_t n = 2*BLOCK_SIZE; // rows in A
         uint32_t m = 2*BLOCK_SIZE; // cols in B
         uint32_t k = 2*BLOCK_SIZE; // cols in a and rows in b
@@ -257,6 +257,12 @@ int main() {
         printf("Neon\n");
         print_matrix(D, n, m);
         c_eq_neon = matrix_comp(E, D, n, m);
-        printf("Neon equal to C? %d\n", c_eq_neon);
-        printf("===============================\n");
+
+        if(!c_eq_neon) {
+          fprintf(stderr, "ERROR: NEON and C versions of matrix multiply do not match\n");
+          return EXIT_FAILURE;
+        }
+
+        printf("OK: Neon matmult equal to C.\n");
+        return EXIT_SUCCESS;
 }
