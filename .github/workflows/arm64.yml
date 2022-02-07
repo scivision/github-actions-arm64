@@ -7,9 +7,10 @@ jobs:
     # The host should always be Linux
     runs-on: ubuntu-latest
     name: Ubuntu arm64
-    
+
     steps:
       - uses: actions/checkout@v2
+
       - uses: uraimo/run-on-arch-action@v2.1.1
         name: Run commands
         id: runcmd
@@ -21,12 +22,7 @@ jobs:
           # a GitHub package registry.
           githubToken: ${{ github.token }}
 
-          # Set an output parameter `uname` for use in subsequent steps
           run: |
-            uname -a
-            echo ::set-output name=uname::$(uname -a)
-
-      - name: Get the output
-        # Echo the `uname` output parameter from the `runcmd` step
-        run: |
-          echo "The uname output was ${{ steps.runcmd.outputs.uname }}"
+            cmake -B build
+            cmake --build build
+            ctest --test-dir build -V
