@@ -1,0 +1,23 @@
+{
+  "version": 3,
+
+"configurePresets": [
+{
+  "name": "default"
+}
+],
+"testPresets": [
+{
+  "name": "default",
+  "configurePreset": "default",
+  "output": {
+    "outputOnFailure": true,
+    "verbosity": "default"
+  },
+  "execution": {
+    "noTestsAction": "error",
+    "stopOnFailure": false
+  }
+}
+]
+}
