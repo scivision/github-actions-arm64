@@ -7,6 +7,11 @@ enable_testing()
 include(CheckIncludeFile)
 include(CheckSymbolExists)
 
+# --- auto-ignore build directory
+if(NOT EXISTS ${PROJECT_BINARY_DIR}/.gitignore)
+  file(WRITE ${PROJECT_BINARY_DIR}/.gitignore "*")
+endif()
+
 # --- Detect CPU
 
 message(STATUS "CPU ARCH ${CMAKE_HOST_SYSTEM_PROCESSOR}")
