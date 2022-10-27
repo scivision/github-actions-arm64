@@ -7,7 +7,7 @@ on:
       - "**.cmake"
       - "**.c"
       - ".github/workflows/arm64.yml"
-  pull_request:
+
 
 jobs:
   aarch64:
@@ -16,14 +16,14 @@ jobs:
     name: Ubuntu arm64
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - uses: uraimo/run-on-arch-action@v2.1.1
+      - uses: uraimo/run-on-arch-action@v2
         name: Run commands
         id: runcmd
         with:
           arch: aarch64
-          distro: ubuntu20.04
+          distro: ubuntu_latest
 
           # Not required, but speeds up builds by storing container images in
           # a GitHub package registry.
@@ -31,9 +31,9 @@ jobs:
 
           install: |
             apt-get update -q -y
-            apt-get install -q -y cmake gcc
+            apt-get install -q -y --no-install-recommends cmake make gcc libc6-dev
 
           run: |
-            cmake -B build
-            cmake --build build
-            ctest --test-dir build --preset default -V
+            cmake --preset default
+            cmake --build --preset default
+            ctest --preset default

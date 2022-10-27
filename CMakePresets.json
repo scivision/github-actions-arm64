@@ -3,8 +3,15 @@
 
 "configurePresets": [
 {
-  "name": "default"
+  "name": "default",
+  "binaryDir": "${sourceDir}/build"
 }
+],
+"buildPresets": [
+  {
+    "name": "default",
+    "configurePreset": "default"
+  }
 ],
 "testPresets": [
 {
@@ -12,11 +19,12 @@
   "configurePreset": "default",
   "output": {
     "outputOnFailure": true,
-    "verbosity": "default"
+    "verbosity": "verbose"
   },
   "execution": {
     "noTestsAction": "error",
-    "stopOnFailure": false
+    "stopOnFailure": false,
+    "timeout": 30
   }
 }
 ]
